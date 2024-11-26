@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login Page</title>
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap"
+    />
+    <style>
+      body {
+        margin: 0;
+        font-family: "Playfair Display", sans-serif;
+      }
+      td {
+        text-align: left;
+      }
+      .bg {
+        background-image: url("images/img5.jpeg");
+        background-color: #154360;
+        background-position: right;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      .div1 {
+        width: 50%;
+        margin-left: 30px;
+        margin-top: 10px;
+      }
+      .container {
+        background-color: rgba(255, 255, 255, 0.6);
+        padding: 10px;
+        border-radius: 10px;
+        text-align: center;
+        margin-top: 10%;
+        margin-right: 40px;
+      }
+
+      .glow {
+        font-size: 50px;
+        color: red;
+        text-align: center;
+        animation: glow 2s ease-in-out infinite alternate;
+      }
+
+      @keyframes glow {
+        from {
+          text-shadow: 0 0 3px rgba(255, 255, 255, 0.3),
+            0 0 6px rgba(255, 255, 255, 0.3), 0 0 9px rgba(255, 255, 255, 0.3),
+            0 0 12px rgba(255, 255, 255, 0.3);
+        }
+
+        to {
+          text-shadow: 0 0 6px rgba(255, 255, 255, 0.5),
+            0 0 9px rgba(255, 255, 255, 0.5), 0 0 12px rgba(255, 255, 255, 0.5),
+            0 0 15px rgba(255, 255, 255, 0.5);
+        }
+      }
+
+      h2 {
+        color: rgba(253, 47, 10, 0.961);
+        font-size: 1rem;
+      }
+
+      p {
+        color: white;
+        font-size: 1rem;
+      }
+
+      form {
+        margin-top: 20px;
+      }
+
+      label {
+        color: #0a2a3c;
+        font-weight: bold;
+        font-size: 1rem;
+      }
+
+      input[type="text"],
+      input[type="password"] {
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+        width: 100%;
+      }
+
+      input[type="submit"] {
+        background-color: #0d3b57;
+        border: none;
+        padding: 10px;
+        color: white;
+        width: 100%;
+        font-size: 1.2rem;
+        font-family: "Playfair Display", serif;
+        cursor: pointer;
+        border-radius: 10px;
+        transition: background-color 0.3s ease;
+      }
+
+      input[type="submit"]:hover {
+        background-color: #0a2a3c;
+      }
+
+      a {
+        color: #0ca3fa;
+        text-decoration: none;
+      }
+
+      a:hover {
+        text-decoration: underline;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="bg">
+      <div class="div1">
+        <p style="text-align: center; font-size: 40px; line-height: 1px">
+          Welcome to
+        </p>
+        <h1 class="glow">STUDENT APP GUIDE</h1>
+      </div>
+      <div class="container">
+        <form onsubmit="submitForm(event)">
+          <h2>Sign In & find the info about apps</h2>
+          <table cellspacing="10" cellpadding="10">
+            <tr>
+              <td><label>Username:</label></td>
+              <td><input type="text" id="username" name="username" /></td>
+            </tr>
+            <tr>
+              <td><label>Password:</label></td>
+              <td><input type="password" id="password" name="password" /></td>
+            </tr>
+            <tr>
+              <td colspan="2">
+                <input type="submit" value="Login" />
+              </td>
+            </tr>
+          </table>
+        </form>
+        <br />
+      </div>
+    </div>
+
+    <!-- JavaScript for form validation -->
+    <script>
+      function validateUsername() {
+        var username = document.getElementById("username").value;
+        var usernamePattern = /^[a-zA-Z\-]+$/;
+
+        if (!usernamePattern.test(username)) {
+          alert("Only alphabets are allowed in the username.");
+          document.getElementById("username").focus();
+          return false;
+        }
+        return true;
+      }
+
+      function validatePassword() {
+        var password = document.getElementById("password").value;
+        var passwordPattern =
+          /^(?=.*\d)(?=.*[A-Z])(?=.*[a-z])(?=.*[~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹])[a-zA-Z0-9~`!@#$%^&*()--+={}\[\]|\\:;"'<>,.?/_₹]{10,16}$/;
+
+        if (!passwordPattern.test(password)) {
+          alert(
+            "Password must be 10-16 characters long with at least 1 digit, 1 uppercase letter, and 1 special character."
+          );
+          document.getElementById("password").focus();
+          return false;
+        }
+        return true;
+      }
+
+      function submitForm(event) {
+        event.preventDefault();
+        var isUsernameValid = validateUsername();
+        var isPasswordValid = validatePassword();
+
+        if (isUsernameValid && isPasswordValid) {
+          alert("Login successful!");
+          window.location.href = "home.html";
+        } else {
+          alert("Please enter a valid username and password.");
+        }
+      }
+    </script>
+  </body>
+</html>
